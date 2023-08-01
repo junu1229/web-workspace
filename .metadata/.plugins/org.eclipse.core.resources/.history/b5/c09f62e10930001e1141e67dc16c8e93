@@ -1,0 +1,5 @@
+package servlet.generic;
+
+public class GenericServletTest {
+
+}

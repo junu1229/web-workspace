@@ -1,0 +1,4 @@
+INDEX VERSION 1.4+/Users/junu/Desktop/web-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+3604625690.index
+0.index
+1715876238.index
