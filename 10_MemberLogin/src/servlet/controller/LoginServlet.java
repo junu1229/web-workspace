@@ -1,0 +1,47 @@
+package servlet.controller;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import servlet.model.dao.MemberDAO;
+import servlet.model.vo.MemberDTO;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = new MemberDTO();
+		try {
+			dto.setId(dao.login(id, password).getId());
+			dto.setPassword(dao.login(id, password).getPassword());
+			dto.setName(dao.login(id, password).getName());
+			dto.setAddress(dao.login(id, password).getAddress());
+			session.setAttribute("dto", dto);
+			if (dto.getName()==null) {
+				response.sendRedirect("../index.jsp");
+			} else {
+				response.sendRedirect("views/login_result.jsp");
+			}
+		} catch (SQLException e) {
+			response.sendRedirect("../index.jsp");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
