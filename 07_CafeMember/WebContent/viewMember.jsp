@@ -11,23 +11,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <%
 String name = request.getParameter("name");
-List<MemberVO> list = (List<MemberVO>) application.getAttribute("list");
-//List<MemberVO> list = (List<MemberVO>) request.getAttribute("list");
+//List<MemberVO> list = (List<MemberVO>) application.getAttribute("list");
+List<MemberVO> list = (List<MemberVO>) request.getAttribute("list");
 %>
 </head>
 <body>
     <div class="container">
         <h2>전체 Cafe 명단 리스트</h2>
-        <% if(name!=null) { %>
-        <h4><%= name %>님이 방금전 회원가입 하셨습니다.</h4>
+        <% if(name!=null) {%>
+	    	<h4><%= name %>님이 방금전 회원가입 하셨습니다.</h4>
         <% } %>
         <table class="table">
-        <% if(list!=null) { %>
-            <% for(MemberVO mv:list) { %>
+        <% if(list!=null) {%>
+            <% for(MemberVO mvl:list) { %>
             <tr>
-                <th>이름 :<%= mv.getName() %></th>
-                <th>나이 :<%= mv.getAge() %></th>
-                <th>주소 :<%= mv.getAddr() %></th>
+                <th>이름 : <%= mvl.getName() %></th>
+                <th>나이 : <%= mvl.getAge() %></th>
+                <th>주소 : <%= mvl.getAddr() %></th>
             </tr>
             <%} %>
         <% } %>

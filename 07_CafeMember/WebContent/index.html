@@ -21,10 +21,20 @@
     button {
         width: 100%;
     }
-</style>
+    </style>
 </head>
 <body>
     <div class="container">
+        <h2>회원 조회</h2>
+        <p>검색할 회원 이름을 입력해주세요</p>
+        <form action="search">
+            <div class="mb-3">
+                <label for="searchName" class="form-label">이름</label>
+                <input type="text" class="form-control" id="searchName" name="searchName" required>
+                <button type="submit" style="margin-top: 1rem;" class="btn btn-danger">검색하기</button>
+            </div>
+        </form>
+        <hr>
         <h2>Register cafe Member</h2>
         <form action="entrance" method="post" onsubmit="return checkData()" name="frm">
             <div class="mb-3">
@@ -42,16 +52,24 @@
             <button type="submit" class="btn btn-danger">입장하기</button>
         </form>
     </div>
+    <div class="container">
+    </div>
     <script>
         function checkData() {
             const age = document.querySelector('#age');
-            let regExp = /^\d{0,3}$/;
-            let result = regExp.test(age.value);
-            if(result) {
+            if(isNaN(age.value)) {
+                alert('나이를 숫자로 입력해주세요!');
+                return false;
             } else {
-                alert("숫자만 입력해주세요");
-            };
-            return result;
+                return true;
+            }
+            // let regExp = /^[0-9]+$/;
+            // let result = regExp.test(age.value);
+            // if(result) {
+            // } else {
+            //     alert("숫자만 입력해주세요");
+            // };
+            // return result;
             
             
             // 나이를 숫자로 입력하지 않았을 때

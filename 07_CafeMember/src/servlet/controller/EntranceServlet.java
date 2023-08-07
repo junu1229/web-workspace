@@ -1,6 +1,7 @@
 package servlet.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.model.MemberDAO;
 import servlet.model.MemberVO;
 
 /*
@@ -24,29 +26,33 @@ import servlet.model.MemberVO;
 
 public class EntranceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ServletContext context;
-	List<MemberVO> list = Collections.synchronizedList(new ArrayList<MemberVO>());
+//	private ServletContext context;
+//	List<MemberVO> list = Collections.synchronizedList(new ArrayList<MemberVO>());
 
-	public void init(ServletConfig config) throws ServletException {
-		context = config.getServletContext();
-		context.setAttribute("list", list);
-	}
-
-	public void destroy() {
-	}
+//	public void init(ServletConfig config) throws ServletException {
+//		context = config.getServletContext();
+//		context.setAttribute("list", list);
+//	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("list", list);
+//		request.setAttribute("list", list);
 		
 		String name = request.getParameter("name");
-		int age = request.getParameter("age")!=null ? Integer.parseInt(request.getParameter("age")) : 0;
+		int age = Integer.parseInt(request.getParameter("age"));
 		String addr = request.getParameter("addr");
-		if(name!=null) {
-			list.add(new MemberVO(name, age, addr));
+//		if(name!=null) {
+//			list.add(new MemberVO(name, age, addr));
+//		}
+		MemberDAO dao = new MemberDAO();
+		try {
+			dao.insertMember(new MemberVO(name, age, addr));
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		RequestDispatcher rdp = request.getRequestDispatcher("viewMember.jsp");
-		rdp.forward(request, response);
+		response.sendRedirect("allmember");
+//		RequestDispatcher rdp = request.getRequestDispatcher("allmember");
+//		rdp.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
