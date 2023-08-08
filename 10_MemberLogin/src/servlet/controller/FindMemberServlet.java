@@ -21,13 +21,13 @@ public class FindMemberServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		try {
-			dto.setId(dao.findByIdMember(id).getId());
-			dto.setPassword(dao.findByIdMember(id).getPassword());
-			dto.setName(dao.findByIdMember(id).getName());
-			dto.setAddress(dao.findByIdMember(id).getAddress());
+			dto.setId(MemberDAO.getInstatace().findByIdMember(id).getId());
+			dto.setPassword(MemberDAO.getInstatace().findByIdMember(id).getPassword());
+			dto.setName(MemberDAO.getInstatace().findByIdMember(id).getName());
+			dto.setAddress(MemberDAO.getInstatace().findByIdMember(id).getAddress());
 			request.setAttribute("finddto", dto);
 		} catch (SQLException e) {
 		}

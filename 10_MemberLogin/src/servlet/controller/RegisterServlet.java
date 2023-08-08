@@ -25,14 +25,14 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String addr = request.getParameter("addr");
-		MemberDAO memberDAO = new MemberDAO();
+//		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		dto.setId(id);
 		dto.setPassword(password);
 		dto.setName(name);
 		dto.setAddress(addr);
 		try {
-			memberDAO.registerMember(dto);
+			MemberDAO.getInstatace().registerMember(dto);
 			session.setAttribute("dto", dto);
 		} catch (SQLException e) {
 			response.sendRedirect("../index.jsp");

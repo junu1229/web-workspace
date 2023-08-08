@@ -22,13 +22,13 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		try {
-			dto.setId(dao.login(id, password).getId());
-			dto.setPassword(dao.login(id, password).getPassword());
-			dto.setName(dao.login(id, password).getName());
-			dto.setAddress(dao.login(id, password).getAddress());
+			dto.setId(MemberDAO.getInstatace().login(id, password).getId());
+			dto.setPassword(MemberDAO.getInstatace().login(id, password).getPassword());
+			dto.setName(MemberDAO.getInstatace().login(id, password).getName());
+			dto.setAddress(MemberDAO.getInstatace().login(id, password).getAddress());
 			session.setAttribute("dto", dto);
 			if (dto.getName()==null) {
 				response.sendRedirect("../index.jsp");

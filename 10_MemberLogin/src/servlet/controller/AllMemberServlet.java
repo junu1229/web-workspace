@@ -20,9 +20,9 @@ public class AllMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArrayList<MemberDTO> dtoList = new ArrayList<>();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		MemberDAO dao = new MemberDAO();
+//		MemberDAO dao = new MemberDAO();
 		try {
-			dtoList = dao.showAllMember();
+			dtoList = MemberDAO.getInstatace().showAllMember();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
