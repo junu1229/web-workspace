@@ -1,21 +1,13 @@
 package com.test;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 public class Test {
 	
 	public static void main(String[] args) {
-		int[] num_list = {12, 4, 15, 46, 38, -2, 15};
-		int answer = 0;
-		for(int i = 0; i<num_list.length; i++) {
-			if (num_list[i]<0) {
-				answer = i;
-			}
-		}
-		
-		System.out.println(IntStream.range(0, num_list.length).filter(i -> num_list[i] < 0).findFirst().orElse(-1));
-		
-    }
+		String[] str_list = {"abc", "def", "ghi"};
+		String ex = "ef";
+		Arrays.stream(str_list).filter(s -> !s.contains(ex)).collect(Collectors.joining());
+	}
 }
-
