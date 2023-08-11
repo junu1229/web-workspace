@@ -22,7 +22,7 @@ public class UpdateController implements Controller{
 		MemberVO vo = new MemberVO(temp.getId(), password, name, addr);
 		MemberDAO.getInstatace().updateMember(vo);
 		session.setAttribute("vo", vo);
-		return new ModelAndView(path);
+		return new ModelAndView(path, true);
 	}
 
 }

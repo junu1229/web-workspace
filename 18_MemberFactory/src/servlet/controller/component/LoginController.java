@@ -22,7 +22,7 @@ public class LoginController implements Controller{
 			path = "views/login_result.jsp";
 			session.setAttribute("vo", vo);
 		} 
-		return new ModelAndView(path);
+		return new ModelAndView(path, true);
 	}
 	
 }
