@@ -1,12 +1,11 @@
 package com.test;
 
-
 public class Test {
 	
 	public static void main(String[] args) {
-		int n = 10;
-		int k = 3;
-		
-		
+		String myString = "abstract algebra";
+		myString.toLowerCase().replaceAll("a", "A");
 	}
+	
+
 }
