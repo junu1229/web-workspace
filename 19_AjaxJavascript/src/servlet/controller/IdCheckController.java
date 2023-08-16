@@ -19,7 +19,6 @@ public class IdCheckController implements Controller{
 			PrintWriter pw = response.getWriter();
 			if(mv.getName().isBlank()) {
 				pw.println("사용 가능한 아이디입니다.");
-				System.out.println("~~~~~");
 			} else {
 				pw.println("이미 존재하는 아이디입니다.");
 			}
