@@ -78,6 +78,7 @@ public class ItemDAO implements ItemDAOTemplate{
 			item.setDescription(rs.getString("description"));
 			item.setPictureUrl(rs.getString("picture_url"));
 			item.setCount(rs.getInt("count"));
+			// 숫자를 사용해서 집어넣을 수 있다. 하지만 보기가 중요하기 때문에 잘 사용안함
 		}
 		closeAll(rs, ps, conn);
 		return item;

@@ -46,8 +46,16 @@
         </div>
     </div>
     <script>
+    	var object = {
+    			item_id: ${item.getItemId()},
+    			item_name: '${item.getItemName()}',
+    			price: ${item.getPrice()},
+    			description: '${item.getDescription()}',
+    			picture_url: '${item.getPictureUrl()}',
+    			count: ${item.getCount()}
+    	}
 	    $('#addCart').click(function(){
-	    	localStorage.setItem("item"+${item.getItemId()}, '${item}');
+	    	localStorage.setItem("item"+${item.getItemId()}, JSON.stringify(object));
 	    	alert("장바구니 담기 성공!");
         });
 		function view() {
