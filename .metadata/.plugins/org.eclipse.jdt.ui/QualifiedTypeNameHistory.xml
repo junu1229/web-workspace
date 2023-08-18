@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="pattern.controller.component.FindController"/>
     <fullyQualifiedTypeName name="pattern.controller.ControllerFactory"/>
     <fullyQualifiedTypeName name="pattern.controller.Controller"/>
     <fullyQualifiedTypeName name="pattern.model.NoteBookDAO"/>
@@ -30,12 +29,10 @@
     <fullyQualifiedTypeName name="servlet.model.dao.MemberDAO"/>
     <fullyQualifiedTypeName name="servlet.controller.ModelAndView"/>
     <fullyQualifiedTypeName name="int"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="java.util.stream.IntStream"/>
-    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="org.json.JSONObject"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="servlet.model.Member"/>
@@ -54,10 +51,13 @@
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="model.Item"/>
     <fullyQualifiedTypeName name="model.ItemDAO"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.function.IntPredicate"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>
