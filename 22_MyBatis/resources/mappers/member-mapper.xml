@@ -9,28 +9,36 @@
 		</insert|update|delete>
 		
 		*SELECT문일 경우
-		<select id="식별자" [parameterType="전달받을자바타입(클래스명)|별칭] resultType="조회결과를 반환하고자 하는 자바 타입>
+		<select id="식별자" [parameterType="전달받을 자바타입(풀클래스명)|별칭] 
+							resultType="조회결과를 반환하고자 하는 자바 타입" | resultMap="조회결과를 뽑아서 매핑할 resultMap의 id">
 		</select>
 		
 		? 대신에 해당 sql문에 전달된 객체로부터 값을 꺼낼 때 #{필드명 또는 변수명 또는 키값} 이용 
 	 -->
 	 <insert id="registerMember" parameterType="Member">
-	 	INSERT INTO(id, password, namem, address)
-	 	vlaue(#{id}, #{password}, #{name}, #{address})
+	 	INSERT INTO member(id, password, name, addr)
+		VALUES(#{id}, #{password}, #{name}, #{addr})
 	 </insert>
 	 
 	 <!-- showAllMember, findByIdMember, login, updateMember -->
-	 <insert id="showAllMember" parameterType="Member">
+	 <select id="showAllMember" resultType="Member">
+	 	SELECT id, password, name, addr
+	 	FROM member
+	 </select>
+	 <select id="findByIdMember" parameterType="String" resultType="Member">
 	 	SELECT *
-	 </insert>
-	 <insert id="findByIdMember" parameterType="Member">
+	 	FROM member
+	 	WHERE id=#{id}
+	 </select>
+	 <select id="login" parameterType="Member" resultType="Member">
 	 	SELECT *
-	 </insert>
-	 <insert id="login" parameterType="Member">
-	 	SELECT *
-	 </insert>
-	 <insert id="updateMember" parameterType="Member">
-	 	SELECT *
-	 </insert>
+	 	FROM member
+	 	WHERE id=#{id} AND password=#{password}
+	 </select>
+	 <update id="updateMember" parameterType="Member">
+	 	UPDATE member
+	 	SET password=#{password}, name=#{name}, addr=#{addr}
+	 	WHERE id=#{id}
+	 </update>
 	 
 </mapper>

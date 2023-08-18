@@ -4,7 +4,7 @@ public class MemberVO {
 	private String id;
 	private String password;
 	private String name;
-	private String address;
+	private String addr;
 
 	public MemberVO() {
 	}
@@ -13,7 +13,7 @@ public class MemberVO {
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.address = address;
+		this.addr = address;
 	}
 
 	public String getId() {
@@ -41,16 +41,16 @@ public class MemberVO {
 	}
 
 	public String getAddress() {
-		return address;
+		return addr;
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		this.addr = address;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [아이디 =" + id + ", 비밀번호 =" + password + ", 이름 =" + name + ", 주소 =" + address + "]";
+		return "MemberVO [아이디 =" + id + ", 비밀번호 =" + password + ", 이름 =" + name + ", 주소 =" + addr + "]";
 	}
 
 }
