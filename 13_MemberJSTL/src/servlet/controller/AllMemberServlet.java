@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servlet.model.dao.MemberDAO;
+import servlet.model.service.MemberService;
 import servlet.model.vo.MemberDTO;
 
 /**
  * Servlet implementation class AllMemberServlet
  */
-@WebServlet("/AllMemberServlet")
+@WebServlet("/member/all")
 public class AllMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArrayList<MemberDTO> dtoList = new ArrayList<>();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		MemberDAO dao = new MemberDAO();
 		try {
-			dtoList = MemberDAO.getInstatace().showAllMember();
+			dtoList = new MemberService().showAllmember();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
