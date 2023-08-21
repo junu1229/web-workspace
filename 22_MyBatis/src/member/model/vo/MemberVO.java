@@ -9,11 +9,11 @@ public class MemberVO {
 	public MemberVO() {
 	}
 
-	public MemberVO(String id, String password, String name, String address) {
+	public MemberVO(String id, String password, String name, String addr) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.addr = address;
+		this.addr = addr;
 	}
 
 	public String getId() {
@@ -44,8 +44,8 @@ public class MemberVO {
 		return addr;
 	}
 
-	public void setAddress(String address) {
-		this.addr = address;
+	public void setAddress(String addr) {
+		this.addr = addr;
 	}
 
 	@Override

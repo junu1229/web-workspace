@@ -3,6 +3,17 @@
 <mapper namespace="memberMapper">
 	<!-- namespace: 해당 mapper 파일의 고유한 별칭 -->
 	
+	<!-- resultMap : 조회한 결과를 객체와 Row 간의 1:1 매칭이 아닌, 원하는 객체의 필드에 담아 반환하고자 할 때 사용 -->
+	<resultMap type="Member" id="memberMap">
+		<!-- 
+			property = 자바 필드 변수 이름 / column = DB 해당 컬럼
+			id는 primary key / result는 일반 컬럼
+		 -->
+		 <id property="id" column ="memberid"/>
+		 <result property="password" column="memberpass"/>
+		 <result property="name" column="membername"/>
+		 <result property="addr" column="memberaddr"/>
+	</resultMap>
 	<!-- 
 		*DML문일 경우
 		<insert|update|delete id="식별자" parameterType="전달받을자바타입(클래스명)|별칭>
@@ -21,14 +32,70 @@
 	 </insert>
 	 
 	 <!-- showAllMember, findByIdMember, login, updateMember -->
-	 <select id="showAllMember" resultType="Member">
-	 	SELECT id, password, name, addr
-	 	FROM member
+	 <select id="showAllMember" resultMap="memberMap">
+	 	SELECT memberid, memberpass, MEMBERNAME, MEMBERADDR
+	 	FROM member2
 	 </select>
-	 <select id="findByIdMember" parameterType="String" resultType="Member">
+	 
+	 <!-- 
+	 	* 마이바티스 동적 쿼리
+	 		- 마이바티스의 강력한 기능 중 하나
+	 		- 마이바티스에서는 쿼리를 동적으로 제어할 수 있는 요소 (Element)들을 제공한다.
+	 		- 동적 쿼리 요소들을 사용하여 좀 더 쉽게 쿼리를 구현할 수 있다.
+	 		
+	 	* if
+	 		- 동적 쿼리를 구현할 때 기본적으로 사용되는 구문
+	 		- 특정 조건을 만족할 경우 안의 구문을 통해 쿼리에 포함
+	 		- 필요로 하는 조건이 1개 이상일 경우 여러개 사용
+	 	
+	 	* choose
+	 		- 자바의 switch, JSTL의 choose 구문과 유사하여 주어진 구문 중 한 가지만을 수행
+	 		- 하위 요소인 when, otherwise 요소와 함께 사용
+	 		
+	 	* trim
+	 		- 쿼리 구문의 특적 부분을 없앨 때 사용
+	 		- prefix로 처음 시작할 단어와 
+		 		- prefixOverrides로 시작 시 제거해야 할 단어 명시 (접두사)
+		 		- suffixOverrides로 끝날 시 제거해야 할 단어 명시 (접미사)
+	 		- where 또는 set 대신 사용 가능
+	 		
+	 	* where
+	 		- 기존 쿼리의 WHERE 절을 동적으로 구현할 때 사용
+	 		- 만약 태그 안의 내용이 'AND'나 'OR'로 시작할 경우 'AND' 나 'OR'을 제거
+	 		
+	 	* set
+	 		- 기존의 UPDATE SET 절을 동적으로 구현할 때 사용
+	 		- SET 키워드를 붙이고 불필요한 콤마를 제거
+	 		
+	 	* foreach
+	 		- 동적 쿼리를 구현할 때 collection에 대한 반복 처리를 제공
+	  -->
+	 <select id="findByIdMember" parameterType="Member" resultType="Member">
 	 	SELECT *
 	 	FROM member
-	 	WHERE id=#{id}
+	 	WHERE id IN
+	 	<foreach collection="voList" item="item" open="(close=)" separator=",">
+	 		#{item}
+	 	</foreach>
+	 	<!-- <trim prefix="WHERE" prefixOverrides="AND|OR">
+		 	<if test="id != null">
+		 		id LIKE '%'||#{id}||'%'
+		 	</if>
+		 	<if test="addr != null">
+		 		AND addr LIKE '%'||#{addr}||'%'
+		 	</if>
+	 	</trim> -->
+	 	<!-- <choose>
+	 		<when test="id!=null">
+	 			id LIKE '%'||#{id}||'%'
+	 		</when>
+	 		<when test="addr != null">
+	 			addr LIKE '%'||#{addr}||'%'
+	 		</when>
+	 		<otherwise>
+	 			name Like '%test%'
+	 		</otherwise>
+	 	</choose> -->
 	 </select>
 	 <select id="login" parameterType="Member" resultType="Member">
 	 	SELECT *
@@ -37,7 +104,17 @@
 	 </select>
 	 <update id="updateMember" parameterType="Member">
 	 	UPDATE member
-	 	SET password=#{password}, name=#{name}, addr=#{addr}
+	 	<trim prefix="SET" suffixOverrides=",">
+	 		<if test="password!=null">
+	 			password=#{password},
+	 		</if>
+	 		<if test="name!=null">
+	 			name=#{name},
+	 		</if>
+	 		<if test="addr!=null">
+	 			addr=#{addr}
+	 		</if>
+	 	</trim>
 	 	WHERE id=#{id}
 	 </update>
 	 

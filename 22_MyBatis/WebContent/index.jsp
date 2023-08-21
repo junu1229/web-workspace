@@ -27,14 +27,14 @@
 					-> 세션 데이터 바인딩 -> views/login_result.jsp (정보 출력)
 			 --%>
 	</c:if>
-	<c:if test="${sessionScope.vo != null}">
-		<%-- 로그인이 되었을 때--%>
 		<li><a href="views/search.html" >회원검색</a></li>
 			<%-- 
 				회원검색 : 검색할 아이디를 입력받아서
 				-> FindMemberServlet -> 검색 성공하면 views/find_ok.jsp (정보 출력)
 									 -> 검색 실패하면 views/find_fail.jsp
 			 --%>
+	<c:if test="${sessionScope.vo != null}">
+		<%-- 로그인이 되었을 때--%>
 		<li><a href="allShow.do">전체회원보기</a></li>
 			<%-- 
 				전체회원보기 : views/allShow.jsp에 전체 리스트 출력

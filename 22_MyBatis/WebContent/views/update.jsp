@@ -21,6 +21,13 @@
 	        <input type="text" name="addr" id="addr" required>
 	        <input type="submit" value="signIn">
 	    </form>
+	    <h2>비밀번호만 변경</h2>
+		<form action="/update.do" method="post">
+	        <label for="password">비밀번호 : </label>
+	        <input type="password" name="password" id="password"required>
+	        <input type="submit" value="signIn">
+	    </form>
 	</c:if>
+	
 </body>
 </html>

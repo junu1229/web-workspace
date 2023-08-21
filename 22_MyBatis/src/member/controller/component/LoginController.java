@@ -19,7 +19,7 @@ public class LoginController implements Controller{
 		MemberVO temp = new MemberVO(id, password, null, null);
 		String path = "index.jsp";
 		MemberVO vo = new MemberService().login(temp);
-		if(!vo.getName().isBlank()) {
+		if(vo!=null) {
 			path = "views/login_result.jsp";
 			session.setAttribute("vo", vo);
 		} 
