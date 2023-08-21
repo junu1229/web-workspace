@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="studentMapper">
+
+	<resultMap type="Student" id="studentMap">
+		<id property="studentNo" column="STUDENT_NO"/>
+		<result property="studentName" column="STUDENT_NAME"/>		
+		<result property="studentSsn" column="STUDENT_SSN"/>		
+		<result property="studentAddress" column="STUDENT_ADDRESS"/>		
+		<result property="entranceDate" column="ENTRANCE_DATE"/>		
+		<result property="absenceYn" column="ABSENCE_YN"/>		
+		<result property="coachProfessorNo" column="COACH_PROFESSOR_NO"/>		
+		<association property="department" resultMap="departmentMap"/>		
+	</resultMap>
+	
+	<resultMap type="department" id="departmentMap">
+		<id property="departmentNo" column="DEPARTMENT_NO"/>
+		<result property="departmentName" column="DEPARTMENT_NAME"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="openYn" column="OPEN_YN"/>
+		<result property="capacity" column="CAPACITY"/>
+	</resultMap>
+	
+	<select id="showStudent" parameterType="String" resultType="Student">
+		SELECT STUDENT_NO, STUDENT_NAME, STUDENT_ADDRESS, DEPARTMENT_NAME, CATEGORY
+		FROM TB_STUDENT
+		JOIN TB_DEPARTMENT USING(DEPARTMENT_NO)
+	</select>
+</mapper>
+<!-- 
+	resultMap에서 TB_STUDENT, TB_DEPARTMENT 
+	id, result <- 앞에서 배운 건 여기까지였다면
+	<association property="department" resultMap="departmentMap"/>
+	
+	showStudent 
+ -->
+ 
