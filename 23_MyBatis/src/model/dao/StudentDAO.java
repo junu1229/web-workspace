@@ -14,8 +14,8 @@ public class StudentDAO {
 		return dao;
 	}
 	
-	public List<StudentVO> showStudent(SqlSession sqlSession, String string) {
-		return sqlSession.selectList("studentMapper.showStudent", string);
+	public List<StudentVO> showStudent(SqlSession sqlSession, String search) {
+		return sqlSession.selectList("studentMapper.showStudent", search);
 	}
 	
 }

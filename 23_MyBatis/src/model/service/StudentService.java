@@ -10,10 +10,9 @@ import model.vo.StudentVO;
 
 public class StudentService {
 
-	public List<StudentVO> showStudent(String string) {
+	public List<StudentVO> showStudent(String search) {
 		SqlSession sqlSession = Template.getSqlSession();
-		System.out.println("studentservice");
-		List<StudentVO> list = StudentDAO.getInstance().showStudent(sqlSession, string);
+		List<StudentVO> list = StudentDAO.getInstance().showStudent(sqlSession, search);
 		sqlSession.close();
 		return list;
 	}
